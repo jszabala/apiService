@@ -14,27 +14,20 @@ public class MoveFilesService {
 		Runnable runnable = new Runnable() {
 			@Override
 			public void run() {
-				// Esto se ejecuta en segundo plano una única vez
 				while (true) {
-					// Pero usamos un truco y hacemos un ciclo infinito
 					try {
-						// En él, hacemos que el hilo duerma
 						Thread.sleep(3600000);
-						// Y después realizamos las operaciones
 						moveFiles();
 						System.out.println(moveFiles());
-						// Así, se da la impresión de que se ejecuta cada cierto tiempo
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
 			}
 		};
-		// Creamos un hilo y le pasamos el runnable
 		Thread hilo = new Thread(runnable);
 		hilo.start();
 
-		// Y aquí podemos hacer cualquier cosa, en el hilo principal del programa
 	}
 	
 	public String moveFiles() throws InterruptedException {
@@ -42,7 +35,7 @@ public class MoveFilesService {
 		try {
 //			Process p = Runtime.getRuntime().exec("python3 /app/python/classifyPDF.py");
 			
-			String command = "python app/python/classifyPDF.py";
+			String command = "python3 /app/classifyPDF.py";
 			Scanner scan = new Scanner(Runtime.getRuntime().exec(command).getInputStream());
 			String res = scan.toString();
 			System.out.println(res);

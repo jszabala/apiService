@@ -18,7 +18,7 @@ public class MoveFilesController {
 	@GetMapping("test")
 	public String test() {
 		String res = "";
-		File carpeta = new File("app/python");
+		File carpeta = new File("/app");
 		String[] listado = carpeta.list();
 		if (listado == null || listado.length == 0) {
 		    System.out.println("No hay elementos dentro de la carpeta actual");
@@ -41,7 +41,7 @@ public class MoveFilesController {
 	@GetMapping("verOrigen")
 	public String verOrigen() {
 		String res = "";
-		File carpeta = new File("app/pdfs");
+		File carpeta = new File("/app/pdfs");
 		String[] listado = carpeta.list();
 		if (listado == null || listado.length == 0) {
 		    System.out.println("No hay elementos dentro de la carpeta actual");
@@ -57,9 +57,9 @@ public class MoveFilesController {
 	}
 	
 	@GetMapping("/verSinClasificar")
-	public String verSinCladificar() {
+	public String verSinClasificar() {
 		String res = "";
-		File carpeta = new File("app/categorias/Sin clasificar");
+		File carpeta = new File("/app/categorias/Sin_clasificar");
 		String[] listado = carpeta.list();
 		if (listado == null || listado.length == 0) {
 		    System.out.println("No hay elementos dentro de la carpeta actual");
@@ -67,7 +67,7 @@ public class MoveFilesController {
 		}
 		else {
 		    for (int i=0; i< listado.length; i++) {
-		        System.out.println(listado[i]+"\n");
+		        System.out.println(listado[i]);
 		        res += listado[i]+"\n";
 		    }
 		}

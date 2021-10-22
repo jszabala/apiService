@@ -18,6 +18,7 @@ poppdf
 
 #Poppler: https://www.linuxadictos.com/poppler-una-excelente-herramienta-de-linea-de-comandos-para-pdf.html#Instalar_Poppler_en_Debian_Ubuntu_y_derivados
 #Comando: sudo apt-get install poppler
+#Comando: sudo apt-get install poppler-utils -y
 
 #Tesseract OCR: https://linuxhint.com/install-tesseract-ocr-linux/
 #Comando: sudo apt install tesseract-ocr -y

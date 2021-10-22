@@ -11,22 +11,22 @@ mensajeFinal = ""
 print("ejecutando_python")
 # Estos son los directorios que manejaremos, si se desean agregar categorias, deben crear una nueva key:
 directorios = {
-    "pdfs":os.path.dirname(os.path.abspath(__file__))+"/../pdfs", # Carpeta general de los pdfs
+    "pdfs":os.path.dirname(os.path.abspath(__file__))+"/pdfs", # Carpeta general de los pdfs
 
     "categorias":{
         # Si se desea agregar una nueva categoría, se debe agregar la siguiente linea: 
         # "(Nombre key)":os.path.dirname(os.path.abspath(__file__))+"\\categorias\\(Nombre carpeta)",
         # Donde, (Nombre key) es la referencia a ese directorio y (Nombre carpeta) es el nombre de la categoría que se desea añadir.
         # Se debe aseguras que el (Nombre carpeta) que se puso, exista dentro de categorias y esté escrito correctamente
-        "factura":os.path.dirname(os.path.abspath(__file__))+"/../categorias/Facturas",
-        "factuCre":os.path.dirname(os.path.abspath(__file__))+"/../categorias/Facturas_credito", 
-        "factuDeb":os.path.dirname(os.path.abspath(__file__))+"/../categorias/Facturas_debito",
-        "ordenPed":os.path.dirname(os.path.abspath(__file__))+"/../categorias/Ordenes_de_pedido",
-        "ordenRem":os.path.dirname(os.path.abspath(__file__))+"/../categorias/Ordenes_de_remision",
-        "epiCrisis":os.path.dirname(os.path.abspath(__file__))+"/../categorias/Epi_crisis",
-        "histoCli":os.path.dirname(os.path.abspath(__file__))+"/../categorias/Historias_clinicas",
-        "otro":os.path.dirname(os.path.abspath(__file__))+"/../categorias/Sin_clasificar",
-        "vacio":os.path.dirname(os.path.abspath(__file__))+"/../categorias/Vacios"
+        "factura":os.path.dirname(os.path.abspath(__file__))+"/categorias/Facturas",
+        "factuCre":os.path.dirname(os.path.abspath(__file__))+"/categorias/Facturas_credito", 
+        "factuDeb":os.path.dirname(os.path.abspath(__file__))+"/categorias/Facturas_debito",
+        "ordenPed":os.path.dirname(os.path.abspath(__file__))+"/categorias/Ordenes_de_pedido",
+        "ordenRem":os.path.dirname(os.path.abspath(__file__))+"/categorias/Ordenes_de_remision",
+        "epiCrisis":os.path.dirname(os.path.abspath(__file__))+"/categorias/Epi_crisis",
+        "histoCli":os.path.dirname(os.path.abspath(__file__))+"/categorias/Historias_clinicas",
+        "otro":os.path.dirname(os.path.abspath(__file__))+"/categorias/Sin_clasificar",
+        "vacio":os.path.dirname(os.path.abspath(__file__))+"/categorias/Vacios"
     },
 
     "images":os.path.dirname(os.path.abspath(__file__))+"/images", # Carpeta donde se generará la imagen temporal en caso de necesitarlo.
@@ -50,10 +50,11 @@ if lista_pdfs:
 
                 mensajeFinal += "("+str(datetime.now())[:-7]+") Detectando tipo de contenido del pdf: "+doc+"...\n"
                 if not texto: # Evalua si texto viene vacío, en caso de venir vacío, debe evaluarlo como imagen:
+                    print('validando imagen')
                     images = convert_from_path(rutaPDF, last_page=1) # Rescata la página 1 del pdf
                     images[0].save(directorios["images"]+'/page0.jpg', 'JPEG')
                     texto = pytesseract.image_to_string(directorios["images"]+"/page0.jpg").lower() # Esto guarda en texto el texto analizado en la imagen.
-                    
+                    print('Imagen validada')
                 if texto: # Revisa finalmente que texto tenga contenido
 
                     if re.search('(factura)', texto):
@@ -104,7 +105,7 @@ if lista_pdfs:
         except Exception as e:
             mensajeFinal += "("+str(datetime.now())[:-7]+") Error: "+str(e)+"\n"
     
-    os.remove(directorios["images"]+"/page0.jpg")
+    #os.remove(directorios["images"]+"/../page0.jpg")
 
 else: 
     mensajeFinal += "("+str(datetime.now())[:-7]+") Carpeta general vacía, no hay nada que mover."
@@ -128,4 +129,5 @@ log.write(after+mensajeFinal) # Escribe en el archivo, esto no cambia a pesar de
 log.close() # Cierra el log
 
 # Mensaje para el desarrollador
+print(mensajeFinal)
 print("Finalizado.")
