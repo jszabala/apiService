@@ -24,8 +24,8 @@ RUN sudo mkdir /app/logs
 RUN sudo mkdir /app/categorias/Sin_clasificar
 RUN sudo mkdir /app/categorias/Facturas
 RUN sudo mkdir /app/categorias/Epi_crisis
-RUN sudo mkdir /app/categorias/Factura_debito
-RUN sudo mkdir /app/categorias/Factura_credito
+RUN sudo mkdir /app/categorias/Facturas_debito
+RUN sudo mkdir /app/categorias/Facturas_credito
 RUN sudo mkdir /app/categorias/Historias_clinicas
 RUN sudo mkdir /app/categorias/Ordenes_de_pedido
 RUN sudo mkdir /app/categorias/Ordenes_de_remision

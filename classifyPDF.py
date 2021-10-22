@@ -79,6 +79,11 @@ if lista_pdfs:
                         shutil.move(rutaPDF, directorios["categorias"]["ordenPed"]+"/"+doc)
                         mensajeFinal += "("+str(datetime.now())[:-7]+") El archivo "+doc+" se movio a la ruta: "+directorios["categorias"]["ordenPed"]+" (Tiempo: "+str(round(time.time()-inicio, 2))+" segundo/s)\n"
 
+                    elif re.search('(orden de remisi.n)', texto):
+                        # Mover a la carpeta de facturas
+                        shutil.move(rutaPDF, directorios["categorias"]["ordenRem"]+"/"+doc)
+                        mensajeFinal += "("+str(datetime.now())[:-7]+") El archivo "+doc+" se movio a la ruta: "+directorios["categorias"]["ordenRem"]+" (Tiempo: "+str(round(time.time()-inicio, 2))+" segundo/s)\n"
+
                     elif "epi crisis" in texto:
                         # Mover a la carpeta de facturas
                         shutil.move(rutaPDF, directorios["categorias"]["epiCrisis"]+"/"+doc)

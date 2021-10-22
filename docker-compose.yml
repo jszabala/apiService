@@ -1,14 +1,14 @@
 version: '2'
 services:
     discovery:
-        image: discovery
+        image: jsmontoya05/discovery:1
         container_name: discovery
         ports:
             - "8762:8762"
         networks:
             - app-network
     gateway:
-        image: gateway
+        image: jsmontoya05/gateway:1
         container_name: gateway
         ports:
             - "8080:8080"
@@ -20,7 +20,7 @@ services:
         networks:
             - app-network
     balancer:
-        image: balancer
+        image: jsmontoya05/balancer:1
         container_name: balancer
         depends_on:
             - discovery
@@ -31,8 +31,7 @@ services:
         networks:
             - app-network
     api_service:
-        image: apiservice
-        container_name: api_service
+        image: jsmontoya05/apiservice:1
         depends_on:
             - discovery
             - gateway
@@ -41,6 +40,9 @@ services:
                 -DEUREKA_SERVER=http://172.22.0.2:8762/eureka
         networks:
             - app-network
+        deploy:
+            replicas: 3
+
 
 networks:
   app-network:
