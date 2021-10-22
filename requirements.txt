@@ -1,0 +1,23 @@
+# Requiere instalación de tesseract OCR, descargar "el mejor modelo" para español. https://parzibyte.me/blog/2019/05/11/instalar-tesseract-ocr-windows-10/
+# El tesseract OCR debe estar en el path, basta con poner la carpeta principal
+
+# La librería pdf2image necesita de poppler, descargar el Release-xx.zip https://github.com/oschwartz10612/poppler-windows/releases/ y descomprimir en archivos de programa, buscar la carpeta bin y agregar al path
+
+# Esta librería nos permite usar tesseract OCR desde python, simpre y cuando esté en el path
+# pip install 
+pytesseract
+pdf2image
+PyPDF2
+tesseract5
+poppdf
+
+# Esta librería nos permitirá usar poppler, el cuál es como una librería de rednerizado de PDF.
+# pip install pdf2image
+
+# EN CASO DE QUERER CONTENERIZAR, encontré esto:
+
+#Poppler: https://www.linuxadictos.com/poppler-una-excelente-herramienta-de-linea-de-comandos-para-pdf.html#Instalar_Poppler_en_Debian_Ubuntu_y_derivados
+#Comando: sudo apt-get install poppler
+
+#Tesseract OCR: https://linuxhint.com/install-tesseract-ocr-linux/
+#Comando: sudo apt install tesseract-ocr -y

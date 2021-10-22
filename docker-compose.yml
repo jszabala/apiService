@@ -1,0 +1,49 @@
+version: '2'
+services:
+    discovery:
+        image: discovery
+        container_name: discovery
+        ports:
+            - "8762:8762"
+        networks:
+            - app-network
+    gateway:
+        image: gateway
+        container_name: gateway
+        ports:
+            - "8080:8080"
+        depends_on:
+            - "discovery"
+        environment:
+            - JAVA_OPTS=
+                -DEUREKA_SERVER=http://172.22.0.2:8762/eureka
+        networks:
+            - app-network
+    balancer:
+        image: balancer
+        container_name: balancer
+        depends_on:
+            - discovery
+            - gateway
+        environment:
+            - JAVA_OPTS=
+                -DEUREKA_SERVER=http://172.22.0.2:8762/eureka
+        networks:
+            - app-network
+    api_service:
+        image: apiservice
+        container_name: api_service
+        depends_on:
+            - discovery
+            - gateway
+        environment:
+            - JAVA_OPTS=
+                -DEUREKA_SERVER=http://172.22.0.2:8762/eureka
+        networks:
+            - app-network
+
+networks:
+  app-network:
+    ipam:
+      config:
+        - subnet: 172.22.0.0/16
